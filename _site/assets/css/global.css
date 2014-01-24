@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+body {
+  font-family: 'ff-enzo-web', sans-serif;
+  color: white;
+  background-color: #1a1a1a; }
+
+html,
+body {
+  height: 100%; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal; }
+
+.home {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background: linear-gradient(to bottom, rgba(26, 26, 26, 0.25) 0%, rgba(26, 26, 26, 0) 20%, rgba(26, 26, 26, 0) 75%, #1a1a1a 100%), url("../images/market.jpg") top center/cover no-repeat #1a1a1a; }

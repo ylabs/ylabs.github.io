@@ -1,0 +1,33 @@
+$dark:      #1a1a1a;
+$medium:    #4b5055;
+$highlight: #00ffff;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'ff-enzo-web', sans-serif;
+  color: white;
+  background-color: $dark;
+}
+
+html,
+body {
+  // temporary
+  height: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+
+.home {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  background: linear-gradient(to bottom, fade-out($dark, 0.75) 0%, fade-out($dark, 1) 20%, fade-out($dark, 1) 75%, $dark 100%), url('../images/market.jpg') top center / cover no-repeat $dark;
+}
