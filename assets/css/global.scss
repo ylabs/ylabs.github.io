@@ -1,33 +1,133 @@
+// Variables
+
 $dark:      #1a1a1a;
 $medium:    #4b5055;
-$highlight: #00ffff;
+$highlight: #33ddff;
+
+$tablet:    750px;
+$desktop:   1200px;
+
+
+// Structure
 
 * {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
+	outline: 0;
+	font-weight: 600;
 }
 
 body {
   font-family: 'ff-enzo-web', sans-serif;
   color: white;
+  line-height: 1.4;
   background-color: $dark;
 }
 
-html,
-body {
-  // temporary
-  height: 100%;
+p {
+  margin-bottom: 1rem;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: normal;
-}
-
-
-.home {
+.wrapper {
   box-sizing: border-box;
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-  background: linear-gradient(to bottom, fade-out($dark, 0.75) 0%, fade-out($dark, 1) 20%, fade-out($dark, 1) 75%, $dark 100%), url('../images/market.jpg') top center / cover no-repeat $dark;
+  padding: 4rem 0;
+}
+
+.container {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+::selection {
+  background: $highlight;
+}
+
+@media screen and (max-width: ($tablet - 1)) {
+  .container {
+    width: 280px;
+  }
+}
+
+@media screen and (min-width: $tablet) {
+  .container {
+    width: 700px;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .container {
+    width: 1120px;
+  }
+}
+
+
+// Elements
+
+.button {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0.6rem 1rem 0.4rem 1rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+  border: 2px solid transparentize(white, 0.25);
+  border-radius: 4px;
+  transition: 0.15s ease;
+  transition-property: color, border-color;
+  &:hover {
+    color: $highlight;
+    border-color: $highlight;
+  }
+}
+
+.primary.wrapper {
+  background: url('../images/market.jpg') top center / cover no-repeat $dark;
+  nav {
+    margin-bottom: 8rem;
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 12rem;
+    }
+    h1 {
+      height: 60px;
+      margin-bottom: -60px;
+    }
+    .button {
+      float: right;
+      margin-top: 0.75rem;
+      margin-bottom: -1.25rem;
+    }
+  }
+  h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 100;
+    text-align: center;
+    color: $highlight;
+    @media screen and (min-width: $tablet) {
+      font-size: 5rem;
+    }
+    @media screen and (min-width: $desktop) {
+      font-size: 8rem;
+    }
+    strong {
+      font-weight: bold;
+    }
+  }
+  h3 {
+    margin-bottom: 4rem;
+    font-size: 1.75rem;
+    @media screen and (min-width: $desktop) {
+      margin-bottom: 6rem;
+    }
+  }
+  @media screen and (min-width: $tablet) {
+    .services p {
+      width: 75%;
+    }
+  }
+}
+
+.contact.wrapper {
+  background: $medium;
 }
