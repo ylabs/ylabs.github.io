@@ -24,6 +24,20 @@ body {
   background-color: $dark;
 }
 
+h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+h5 {
+  font-size: 0.9rem;
+}
+h6 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: transparentize(white, 0.5);
+}
+
 p {
   margin-bottom: 1rem;
 }
@@ -36,6 +50,12 @@ p {
 .container {
   box-sizing: border-box;
   margin: 0 auto;
+}
+
+.clear:after {
+  content: "";
+  display: table;
+  clear: both;
 }
 
 ::selection {
@@ -78,6 +98,13 @@ p {
   &:hover {
     color: $highlight;
     border-color: $highlight;
+  }
+  &.round {
+    border-radius: 2rem;
+  }
+  &.large {
+    padding: 0.7rem 3rem 0.6rem 3rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -130,4 +157,58 @@ p {
 
 .contact.wrapper {
   background: $medium;
+}
+
+.work {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid white;
+  .links {
+    margin-top: 2rem;
+    list-style-type: none;
+    li {
+      display: inline;
+      .button {
+        margin: 0 0.5rem 0.5rem 0;
+      }
+    }
+  }
+}
+
+.team {
+  margin: 10rem 0 5rem 0;
+  @media screen and (min-width: $tablet) {
+    p {
+      float: left;
+      width: 60%;
+    }
+  }
+  .members {
+    list-style-type: none;
+    li {
+      height: 5rem;
+      background-color: $medium;
+      @media screen and (min-width: $tablet) {
+        float: right;
+        width: 30%;
+      }
+      .portrait {
+        float: left;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1rem;
+        background-color: $highlight;
+      }
+      h5 {
+        padding: 1rem 0 0 1rem;
+      }
+    }
+  }
+}
+
+.contact {
+  height: 30rem;
+  .button {
+    margin-top: 1.25rem;
+  }
 }

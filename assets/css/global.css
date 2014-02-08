@@ -10,6 +10,19 @@ body {
   line-height: 1.4;
   background-color: #1a1a1a; }
 
+h4 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  text-transform: uppercase; }
+
+h5 {
+  font-size: 0.9rem; }
+
+h6 {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5); }
+
 p {
   margin-bottom: 1rem; }
 
@@ -20,6 +33,11 @@ p {
 .container {
   box-sizing: border-box;
   margin: 0 auto; }
+
+.clear:after {
+  content: "";
+  display: table;
+  clear: both; }
 
 ::selection {
   background: #33ddff; }
@@ -48,6 +66,11 @@ p {
   .button:hover {
     color: #33ddff;
     border-color: #33ddff; }
+  .button.round {
+    border-radius: 2rem; }
+  .button.large {
+    padding: 0.7rem 3rem 0.6rem 3rem;
+    font-size: 1.1rem; }
 
 .primary.wrapper {
   background: url("../images/market.jpg") top center/cover no-repeat #1a1a1a; }
@@ -89,3 +112,44 @@ p {
 
 .contact.wrapper {
   background: #4b5055; }
+
+.work {
+  margin-top: 6rem;
+  padding-top: 2rem;
+  border-top: 1px solid white; }
+  .work .links {
+    margin-top: 2rem;
+    list-style-type: none; }
+    .work .links li {
+      display: inline; }
+      .work .links li .button {
+        margin: 0 0.5rem 0.5rem 0; }
+
+.team {
+  margin: 10rem 0 5rem 0; }
+  @media screen and (min-width: 750px) {
+    .team p {
+      float: left;
+      width: 60%; } }
+  .team .members {
+    list-style-type: none; }
+    .team .members li {
+      height: 5rem;
+      background-color: #4b5055; }
+      @media screen and (min-width: 750px) {
+        .team .members li {
+          float: right;
+          width: 30%; } }
+      .team .members li .portrait {
+        float: left;
+        width: 5rem;
+        height: 5rem;
+        margin-right: 1rem;
+        background-color: #33ddff; }
+      .team .members li h5 {
+        padding: 1rem 0 0 1rem; }
+
+.contact {
+  height: 30rem; }
+  .contact .button {
+    margin-top: 1.25rem; }
