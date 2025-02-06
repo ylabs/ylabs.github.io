@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
-gem 'github-pages'
-gem 'jekyll-sass'
+gem 'jekyll', '~> 4.3.0'
+gem 'rexml', require: true

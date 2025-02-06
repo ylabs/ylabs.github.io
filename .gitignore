@@ -1,16 +1,26 @@
-*.gem
-*.rbc
-.bundle
-.config
-coverage
-InstalledFiles
-lib/bundler/man
-pkg
-rdoc
-spec/reports
-test/tmp
-test/version_tmp
-tmp
+# Jekyll specific
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# Bundler dependencies
+.bundle/
+vendor/
+
+# Logs and temp files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Gem dependencies
+Gemfile.lock
+
+# Node dependencies (if using npm/yarn)
+node_modules/
+package-lock.json
+yarn.lock
 
 # YARD artifacts
 .yardoc

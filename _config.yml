@@ -1,3 +1,1 @@
-name: Your New Jekyll Site
-markdown: redcarpet
-highlighter: pygments
+auto: true
