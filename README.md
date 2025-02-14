@@ -1,6 +1,8 @@
 ylab.co
 =======
 
+Ylab is an AI product studio, building AI enhanced products to help humans.
+
 `bundle install`
 `bundle exec jekyll serve --watch`
 

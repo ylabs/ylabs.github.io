@@ -116,7 +116,7 @@ p {
 .work {
   margin-top: 6rem;
   padding-top: 2rem;
-  border-top: 1px solid white; }
+  /* border-top: 1px solid white; } */
   .work .links {
     margin-top: 2rem;
     list-style-type: none; }
