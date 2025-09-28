@@ -1,3 +1,3 @@
 source 'https://rubygems.org'
 gem 'jekyll', '~> 4.3.0'
-gem 'rexml', require: true
+gem "rexml", ">= 3.3.9"
