@@ -1,0 +1,17 @@
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">What we do</p>
+      <h2 class="section-title">How Ylab operates</h2>
+    </div>
+    <div class="services-grid">
+      {% for service in site.data.services %}
+      <div class="service-card">
+        <span class="service-number">{{ service.number }}</span>
+        <h3 class="service-title">{{ service.title }}</h3>
+        <p class="service-desc">{{ service.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,17 @@
+<section class="section section--bordered" id="explorations">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Current explorations</p>
+      <h2 class="section-title">What we are working on right now</h2>
+    </div>
+    <div class="explorations-grid">
+      {% for item in site.data.explorations %}
+      <div class="exploration-card">
+        <div class="exploration-rule" aria-hidden="true"></div>
+        <h3 class="exploration-title">{{ item.title }}</h3>
+        <p class="exploration-desc">{{ item.description }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
