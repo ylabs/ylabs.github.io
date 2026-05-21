@@ -1,0 +1,21 @@
+<section class="section section--bordered" id="writing">
+  <div class="container">
+    <div class="section-header section-header--split">
+      <div>
+        <p class="section-label">Writing &amp; ideas</p>
+        <h2 class="section-title">Essays and thinking pieces</h2>
+      </div>
+      <p class="section-aside">Reflections on technology, institutions, and social change</p>
+    </div>
+    <div class="essays-grid">
+      {% for essay in site.data.essays %}
+      <article class="essay-card">
+        <p class="essay-category">{{ essay.category }}</p>
+        <h3 class="essay-title">{{ essay.title }}</h3>
+        <p class="essay-excerpt">{{ essay.excerpt }}</p>
+        <span class="essay-cta">Read essay →</span>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

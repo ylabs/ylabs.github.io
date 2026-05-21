@@ -1,1 +1,26 @@
-auto: true
+title: Ylab
+description: Building institutions for the AI era.
+url: "https://ylab.co"
+baseurl: ""
+
+markdown: kramdown
+permalink: pretty
+
+sass:
+  sass_dir: assets/css
+  style: compressed
+
+exclude:
+  - Gemfile.lock
+  - vendor/
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - tsconfig.json
+  - next.config.ts
+  - tailwind.config.ts
+  - postcss.config.mjs
+  - src/
+  - .next/
+  - out/
+  - README.md

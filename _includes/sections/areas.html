@@ -1,0 +1,23 @@
+<section class="section section--bordered" id="areas">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">Areas of interest</p>
+      <h2 class="section-title">Where we focus our attention and energy</h2>
+    </div>
+    <div class="areas-list">
+      {% for area in site.data.areas %}
+      <details class="area-item">
+        <summary class="area-summary">
+          <span class="area-title">{{ area.title }}</span>
+          <span class="area-icon" aria-hidden="true">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 5v14M5 12h14"/>
+            </svg>
+          </span>
+        </summary>
+        <p class="area-desc">{{ area.description }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>

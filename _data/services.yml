@@ -1,0 +1,19 @@
+- id: advise
+  number: "01"
+  title: Advise
+  description: Strategic guidance for founders, executives, investors, and mission-driven organizations navigating AI, growth, and organizational change.
+
+- id: build
+  number: "02"
+  title: Build
+  description: Incubate new ventures, experiments, and public-interest initiatives at the intersection of technology and society.
+
+- id: invest
+  number: "03"
+  title: Invest
+  description: Support exceptional people and early-stage ideas through capital, networks, and operational expertise.
+
+- id: convene
+  number: "04"
+  title: Convene
+  description: Bring together builders, researchers, policymakers, investors, and philanthropists to explore important questions and create new opportunities.
