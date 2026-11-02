@@ -1,19 +1,19 @@
-- id: advise
+- id: evaluate
   number: "01"
-  title: Advise
-  description: Strategic guidance for founders, executives, investors, and mission-driven organizations navigating AI, growth, and organizational change.
+  title: Evaluate
+  description: Open, reproducible evaluations of frontier models on the real tasks of public services, built from national guidelines and checked by domain experts.
 
 - id: build
   number: "02"
   title: Build
-  description: Incubate new ventures, experiments, and public-interest initiatives at the intersection of technology and society.
+  description: Hands-on engineering of AI tools and the data pipelines, safety checks and human review around them, designed for low-bandwidth, multilingual settings.
+
+- id: advise
+  number: "03"
+  title: Advise
+  description: Technical due diligence and deployment advice for public institutions, nonprofits and funders deciding where AI can help and what it takes to run it well.
 
 - id: invest
-  number: "03"
-  title: Invest
-  description: Support exceptional people and early-stage ideas through capital, networks, and operational expertise.
-
-- id: convene
   number: "04"
-  title: Convene
-  description: Bring together builders, researchers, policymakers, investors, and philanthropists to explore important questions and create new opportunities.
+  title: Invest
+  description: Early-stage investment in founders building technology for health, government and development, as angel investors and venture partners.

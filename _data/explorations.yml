@@ -1,17 +1,5 @@
-- title: Amsterdam innovation ecosystem
-  description: Mapping the emerging AI and deep tech ecosystem across the Netherlands and broader Europe.
-
-- title: AI for healthcare
-  description: Evaluating early-stage companies and initiatives applying AI to clinical and health system challenges.
-
-- title: Talent networks
-  description: Building and connecting communities of exceptional builders, researchers, and operators.
-
-- title: Philanthropic innovation
-  description: New models for deploying philanthropic capital at the intersection of technology and social impact.
-
-- title: Institution design
-  description: How to structure organizations — in government, civil society, and the private sector — that can operate effectively in a rapidly changing technological environment.
-
-- title: Public-interest technology
-  description: Supporting the growing field of technologists working on civic, government, and social challenges.
+- title: Health-worker AI evaluation, Kenya
+  status: In progress · 2026
+  description: An open evaluation of frontier models on community health-worker tasks. 90 hypertension and diabetes cases built from Kenya Ministry of Health guidelines, in English and Swahili, scored against per-case safety rubrics with clinician spot-checks.
+  url: https://github.com/daveyoon/health-worker-evals
+  cta: View on GitHub
