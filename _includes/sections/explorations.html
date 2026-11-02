@@ -1,15 +1,17 @@
-<section class="section section--bordered" id="explorations">
+<section class="section section--bordered" id="projects">
   <div class="container">
     <div class="section-header">
-      <p class="section-label">Current explorations</p>
-      <h2 class="section-title">What we are working on right now</h2>
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">What we are working on</h2>
     </div>
     <div class="explorations-grid">
       {% for item in site.data.explorations %}
       <div class="exploration-card">
         <div class="exploration-rule" aria-hidden="true"></div>
+        {% if item.status %}<p class="essay-category">{{ item.status }}</p>{% endif %}
         <h3 class="exploration-title">{{ item.title }}</h3>
         <p class="exploration-desc">{{ item.description }}</p>
+        {% if item.url %}<a href="{{ item.url }}" class="essay-cta" target="_blank" rel="noopener noreferrer">{{ item.cta | default: "Learn more" }} →</a>{% endif %}
       </div>
       {% endfor %}
     </div>

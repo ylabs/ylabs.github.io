@@ -1,11 +1,11 @@
-- id: ai-capability
-  title: AI & Human Capability
-  description: How artificial intelligence can augment and expand human potential — not just automate tasks, but create new possibilities for learning, creativity, and judgment. The most important question is not what AI can do, but what people can do with AI.
+- id: health
+  title: Community and primary health
+  description: Frontline health workers make high-stakes decisions with little support. We test whether AI can help them follow national clinical guidelines safely, starting with hypertension and diabetes care in Kenya.
 
-- id: healthcare
-  title: Healthcare
-  description: From clinical decision support to health system transformation, AI has genuine potential to improve outcomes, reduce disparities, and make quality care more accessible. The challenge is navigating the complexity of healthcare institutions while remaining focused on the patient.
+- id: public-services
+  title: Public services
+  description: Governments are under pressure to adopt AI quickly. We help them decide where it fits, what evidence to ask for, and how to keep a human accountable for the outcome.
 
-- id: future-of-work
-  title: Future of Work
-  description: AI will reshape labor markets, organizational structures, and the nature of meaningful work. The transition can be handled well or poorly. We explore strategies for navigating this change in ways that are equitable, humane, and broadly beneficial.
+- id: development
+  title: Global development
+  description: Most AI evaluation happens in English and in rich-country settings. We build evaluations in the languages and contexts where development programs actually run, starting in East Africa.
