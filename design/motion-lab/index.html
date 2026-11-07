@@ -1,0 +1,559 @@
+---
+layout: null
+sitemap: false
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+{% include favicon.html %}
+<style>body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Ylab Motion Lab</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: one README-style column of live specimens, each a full-width stage with notes beneath. */
+:root {
+  --bg: #f6f6f4;
+  --fg: #111111;
+  --muted: #5e5e5a;
+  --rule: #d8d8d3;
+  --link: #1f56c4;
+  --tag-bg: #111111;
+  --tag-fg: #ffffff;
+  --fail: #8a2b1d;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #121211; --fg: #ececea; --muted: #a3a39e; --rule: #2c2c2a; --link: #8fb2ff;
+    --tag-bg: #ececea; --tag-fg: #111111; --fail: #d0664f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #121211; --fg: #ececea; --muted: #a3a39e; --rule: #2c2c2a; --link: #8fb2ff;
+  --tag-bg: #ececea; --tag-fg: #111111; --fail: #d0664f; color-scheme: dark;
+}
+body {
+  background: var(--bg); color: var(--fg); font-family: var(--mono); font-size: 13px; line-height: 1.8;
+}
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 40px 80px;
+}
+a { color: var(--link); }
+header.top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; text-transform: uppercase; line-height: 1.5; }
+header.top .cursor { display: inline-block; width: 8px; height: 13px; background: var(--fg); vertical-align: -1px; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.intro { max-width: 620px; margin: 72px 0 24px; }
+.intro p { margin: 0 0 16px; }
+h1, h2 { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.02em; margin: 0 0 16px; text-wrap: balance; }
+.hash { color: var(--muted); font-weight: 400; }
+button {
+  font: inherit; font-size: 12px; text-transform: uppercase; letter-spacing: 0.02em; color: var(--fg);
+  background: none; border: 0; padding: 6px 0; cursor: pointer; min-height: 32px;
+}
+button:hover { color: var(--link); }
+button:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.controls { display: flex; flex-wrap: wrap; gap: 4px 20px; }
+section.demo { margin-top: 72px; }
+.stage {
+  position: relative; width: 100%; height: 420px; border-top: 1px solid var(--fg); border-bottom: 1px solid var(--rule);
+  overflow: hidden; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+}
+.stage canvas { display: block; width: 100%; height: 100%; }
+.stage .hint { position: absolute; left: 0; bottom: 8px; font-size: 11px; color: var(--muted); pointer-events: none; }
+.tag {
+  display: inline-block; background: var(--tag-bg); color: var(--tag-fg); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 9px; line-height: 1.3;
+}
+.stage .tag { position: absolute; pointer-events: none; }
+.notes { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 8px 40px; margin-top: 16px; }
+.notes p { margin: 0; min-width: 0; }
+.notes b { font-weight: 600; }
+.ring { position: absolute; inset: 0; margin: auto; width: min(400px, 92%); aspect-ratio: 1; max-width: 100%; pointer-events: none; animation: spin 50s linear infinite; }
+.ring text { fill: var(--fg); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.headline { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding: 0 8px; }
+.headline p { margin: 0; text-align: center; font-size: clamp(26px, 5.4vw, 60px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; text-transform: uppercase; max-width: 1000px; }
+.headline .w { display: inline-block; white-space: nowrap; }
+.headline .l { display: inline-block; will-change: transform; }
+footer { margin-top: 96px; border-top: 1px solid var(--rule); padding-top: 16px; color: var(--muted); }
+.fallback { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--muted); padding: 16px; text-align: center; }
+@media (prefers-reduced-motion: reduce) {
+  .ring, header.top .cursor { animation: none; }
+}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>Ylab <span class="cursor" aria-hidden="true"></span><br>Motion lab<br>Nov 2026</div>
+    <div class="controls" style="align-self: flex-start">
+      <button id="motion-toggle" type="button" aria-pressed="true">[ Motion: on ]</button>
+    </div>
+  </header>
+
+  <div class="intro">
+    <p>~*~ Six live motion studies for ylab.co ~*~</p>
+    <h1><span class="hash">#</span> Things to play with</h1>
+    <p>Each stage below is interactive: move your cursor over it, drag, or use the controls. Under each one is how the motion works and where it could live on the site.</p>
+    <p>Like code.storage, none of these use a physics engine. Each is a few lines of spring, gravity or damping math run every frame.</p>
+  </div>
+
+  <section class="demo" id="swarm" aria-labelledby="swarm-h">
+    <h2 id="swarm-h"><span class="hash">##</span> Case swarm</h2>
+    <div class="stage" id="swarm-stage" style="height: 460px">
+      <span class="tag" style="left: 0; top: 14px">Every case is a ball</span>
+      <span class="hint">Move to push · drag on a phone</span>
+    </div>
+    <div class="controls">
+      <button type="button" id="swarm-sort">[ Sort pass / fail ]</button>
+      <button type="button" id="swarm-scatter">[ Scatter ]</button>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> 1,400 chrome spheres drawn in two batches. Each is pulled toward a home spot by a capped spring, loses 8% of its speed per frame, and is pushed away from the cursor inside a small radius.</p>
+      <p><b>On ylab.</b> The hero of the evals page. Balls are test cases; the rust ones failed. "Sort" splits them into a pass pile and a fail pile, which is the whole offer in one gesture.</p>
+    </div>
+  </section>
+
+  <section class="demo" id="blob" aria-labelledby="blob-h">
+    <h2 id="blob-h"><span class="hash">##</span> Liquid chrome</h2>
+    <div class="stage" id="blob-stage">
+      <svg class="ring" viewBox="0 0 400 400" aria-hidden="true">
+        <defs><path id="ring-path" d="M200,200 m-180,0 a180,180 0 1,1 360,0 a180,180 0 1,1 -360,0"></path></defs>
+        <text font-size="11" letter-spacing="3.4" font-family="IBM Plex Mono, monospace"><textPath href="#ring-path">YLAB · AI ADVISORY FOR INSTITUTIONS · HEALTHCARE · GOVERNMENT · WORK · </textPath></text>
+      </svg>
+      <span class="hint">Hover to agitate · drag to turn</span>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> A smooth sphere whose surface is pushed in and out by layered sine waves every frame. Hovering eases the wave height up, and dragging spins it with momentum that decays.</p>
+      <p><b>On ylab.</b> A signature object for the homepage, standing in for "the institution": calm at rest, unsettled when you poke it. Made entirely in code, so there's no 3D model to commission.</p>
+    </div>
+  </section>
+
+  <section class="demo" id="rope" aria-labelledby="rope-h">
+    <h2 id="rope-h"><span class="hash">##</span> Hanging captions</h2>
+    <div class="stage" id="rope-stage">
+      <span class="hint">Grab a tag and throw it</span>
+    </div>
+    <div class="controls">
+      <button type="button" id="rope-gust">[ Gust of wind ]</button>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> Verlet rope: each tag hangs from a dotted chain of 16 points. Gravity pulls them down, and the chain is re-measured 14 times per frame so it keeps its length.</p>
+      <p><b>On ylab.</b> code.storage's black caption tags, made physical. Section labels or client quotes could hang from the top of a section and swing when you scroll past.</p>
+    </div>
+  </section>
+
+  <section class="demo" id="ascii" aria-labelledby="ascii-h">
+    <h2 id="ascii-h"><span class="hash">##</span> Terminal field</h2>
+    <div class="stage" id="ascii-stage">
+      <span class="hint">Move to send ripples</span>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> A grid of characters picked by brightness from " .·:-=+*#%@". Brightness comes from two slow waves, a word mask, and a ring wave spreading from the cursor.</p>
+      <p><b>On ylab.</b> A lightweight hero for the README direction. It's plain text on a 2D canvas, so it costs almost nothing and suits the monospace page.</p>
+    </div>
+  </section>
+
+  <section class="demo" id="magnet" aria-labelledby="magnet-h">
+    <h2 id="magnet-h"><span class="hash">##</span> Restless headline</h2>
+    <div class="stage" id="magnet-stage">
+      <div class="headline"><p id="magnet-text" aria-label="Building institutions for the AI era.">Building institutions for the AI era.</p></div>
+      <span class="hint">Run your cursor through the words</span>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> Every letter is its own spring. The cursor pushes letters away, they tip in the direction they're thrown, and they ease back into place.</p>
+      <p><b>On ylab.</b> The homepage headline, so the first thing a visitor touches reacts. The text stays real HTML, so it's still readable and searchable.</p>
+    </div>
+  </section>
+
+  <section class="demo" id="portico" aria-labelledby="portico-h">
+    <h2 id="portico-h"><span class="hash">##</span> Institution of dots</h2>
+    <div class="stage" id="portico-stage">
+      <span class="tag" id="portico-tag" style="right: 0; top: 14px">Built on judgment</span>
+      <span class="hint">Move to disturb</span>
+    </div>
+    <div class="controls">
+      <button type="button" id="portico-collapse">[ Collapse ]</button>
+      <button type="button" id="portico-rebuild">[ Rebuild ]</button>
+    </div>
+    <div class="notes">
+      <p><b>How it moves.</b> A portico traced in about 600 dots. "Collapse" switches each dot to gravity with a bouncy floor; "Rebuild" switches back to springs that pull every dot home.</p>
+      <p><b>On ylab.</b> The "building institutions" idea, literally. It could collapse as you scroll into a section about what AI disrupts, then rebuild at "how we help".</p>
+    </div>
+  </section>
+
+  <footer>
+    <p style="margin: 0">--- All six respect your system's reduce-motion setting. They pause when scrolled off screen.</p>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var motionOn = !reduce;
+  var toggle = document.getElementById("motion-toggle");
+  function syncToggle() { toggle.textContent = motionOn ? "[ Motion: on ]" : "[ Motion: off ]"; toggle.setAttribute("aria-pressed", String(motionOn)); }
+  syncToggle();
+  toggle.addEventListener("click", function () { motionOn = !motionOn; syncToggle(); });
+
+  var T = {};
+  function readTokens() {
+    var cs = getComputedStyle(document.documentElement);
+    ["bg", "fg", "muted", "rule", "tag-bg", "tag-fg", "fail", "link"].forEach(function (k) { T[k] = cs.getPropertyValue("--" + k).trim(); });
+  }
+  readTokens();
+
+  var demos = [];
+  function register(stage, d) {
+    d.stage = stage; d.visible = false; demos.push(d);
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (es) { es.forEach(function (e) { d.visible = e.isIntersecting; }); }, { rootMargin: "100px" }).observe(stage);
+    } else { d.visible = true; }
+  }
+
+  function pointer(stage) {
+    var p = { x: -9999, y: -9999, inside: false, down: false, vx: 0, vy: 0 };
+    function set(e) {
+      var r = stage.getBoundingClientRect(); var nx = e.clientX - r.left, ny = e.clientY - r.top;
+      p.vx = nx - p.x; p.vy = ny - p.y; p.x = nx; p.y = ny; p.inside = true;
+    }
+    stage.addEventListener("pointermove", set);
+    stage.addEventListener("pointerdown", function (e) { set(e); p.down = true; });
+    window.addEventListener("pointerup", function () { p.down = false; });
+    stage.addEventListener("pointerleave", function () { p.inside = false; p.x = p.y = -9999; });
+    return p;
+  }
+
+  function canvas2d(stage) {
+    var c = document.createElement("canvas"); stage.insertBefore(c, stage.firstChild);
+    var ctx = c.getContext("2d"); var s = { c: c, ctx: ctx, w: 0, h: 0, dpr: 1 };
+    function fit() {
+      s.dpr = Math.min(window.devicePixelRatio || 1, 2); s.w = stage.clientWidth; s.h = stage.clientHeight;
+      c.width = Math.round(s.w * s.dpr); c.height = Math.round(s.h * s.dpr); ctx.setTransform(s.dpr, 0, 0, s.dpr, 0, 0);
+      if (s.onfit) s.onfit();
+    }
+    new ResizeObserver(fit).observe(stage); fit();
+    return s;
+  }
+
+  // Shared chrome environment: a painted studio with softboxes, turned into reflections.
+  function studioEnv(renderer) {
+    var c = document.createElement("canvas"); c.width = 1024; c.height = 512; var g = c.getContext("2d");
+    var grad = g.createLinearGradient(0, 0, 0, 512);
+    grad.addColorStop(0, "#ffffff"); grad.addColorStop(0.45, "#d9d9d6"); grad.addColorStop(0.52, "#8d8d88"); grad.addColorStop(1, "#1d1d1b");
+    g.fillStyle = grad; g.fillRect(0, 0, 1024, 512);
+    g.fillStyle = "#ffffff";
+    [[90, 120, 140, 90], [420, 70, 220, 60], [780, 140, 110, 160]].forEach(function (r) { g.fillRect(r[0], r[1], r[2], r[3]); });
+    g.fillStyle = "#3a3a37"; g.fillRect(0, 300, 1024, 18);
+    var tex = new THREE.CanvasTexture(c); tex.mapping = THREE.EquirectangularReflectionMapping;
+    var pm = new THREE.PMREMGenerator(renderer); var env = pm.fromEquirectangular(tex).texture; tex.dispose(); pm.dispose();
+    return env;
+  }
+
+  function webgl(stage) {
+    try {
+      var r = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      r.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)); r.setClearColor(0x000000, 0);
+      if (THREE.sRGBEncoding) r.outputEncoding = THREE.sRGBEncoding;
+      stage.insertBefore(r.domElement, stage.firstChild); return r;
+    } catch (e) {
+      var f = document.createElement("div"); f.className = "fallback"; f.textContent = "This study needs WebGL, which this browser has turned off.";
+      stage.appendChild(f); return null;
+    }
+  }
+
+  /* ---------- Case swarm ---------- */
+  (function () {
+    var stage = document.getElementById("swarm-stage");
+    if (typeof THREE === "undefined") return;
+    var renderer = webgl(stage); if (!renderer) return;
+    var scene = new THREE.Scene(); scene.environment = studioEnv(renderer);
+    var camera = new THREE.PerspectiveCamera(32, 1, 0.1, 200);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+    var dl = new THREE.DirectionalLight(0xffffff, 0.8); dl.position.set(8, 12, 6); scene.add(dl);
+    var N = 1400, geo = new THREE.SphereGeometry(0.11, 18, 14);
+    var isFail = new Uint8Array(N), nFail = 0;
+    for (var i = 0; i < N; i++) { if (((i * 2654435761) >>> 0) % 100 < 13) { isFail[i] = 1; nFail++; } }
+    var passMesh = new THREE.InstancedMesh(geo, new THREE.MeshStandardMaterial({ color: 0xf4f4f2, metalness: 1, roughness: 0.07 }), N - nFail);
+    var failMat = new THREE.MeshStandardMaterial({ color: new THREE.Color(T.fail), metalness: 0.55, roughness: 0.28 });
+    var failMesh = new THREE.InstancedMesh(geo, failMat, nFail);
+    passMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage); failMesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
+    scene.add(passMesh, failMesh);
+    var pos = new Float32Array(N * 3), vel = new Float32Array(N * 3), homeA = new Float32Array(N * 3), homeB = new Float32Array(N * 3), slot = new Uint16Array(N);
+    var pc = 0, fc = 0;
+    function pile(out, k, cx, height, radius) {
+      var e = Math.random(), t = Math.random() * Math.PI * 2, a = radius * (1 - e) * Math.sqrt(Math.random());
+      out[k] = cx + Math.cos(t) * a; out[k + 1] = height * e * e * 0.9 + 0.1; out[k + 2] = Math.sin(t) * a;
+    }
+    for (i = 0; i < N; i++) {
+      var k = i * 3; slot[i] = isFail[i] ? fc++ : pc++;
+      pile(homeA, k, 0, 7.5, 4.2);
+      if (isFail[i]) pile(homeB, k, 5.2, 3.6, 2.1); else pile(homeB, k, -2.2, 7, 4);
+      pos[k] = (Math.random() - 0.5) * 24; pos[k + 1] = Math.random() * 14; pos[k + 2] = (Math.random() - 0.5) * 10;
+    }
+    var sorted = false, home = homeA;
+    var ptr = pointer(stage), ray = new THREE.Raycaster(), ndc = new THREE.Vector2(), plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0), hit = new THREE.Vector3(9999, 9999, 0);
+    var m = new THREE.Matrix4();
+    function fit() { var w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.position.set(0, 4.6, w < 600 ? 30 : 21); camera.updateProjectionMatrix(); }
+    new ResizeObserver(fit).observe(stage); fit();
+    document.getElementById("swarm-sort").addEventListener("click", function (e) { sorted = !sorted; home = sorted ? homeB : homeA; e.currentTarget.textContent = sorted ? "[ Mix them back ]" : "[ Sort pass / fail ]"; });
+    document.getElementById("swarm-scatter").addEventListener("click", function () { for (var j = 0; j < N * 3; j++) vel[j] += (Math.random() - 0.5) * (j % 3 === 1 ? 1.4 : 1.1); });
+    register(stage, {
+      frame: function (t) {
+        failMat.color.set(T.fail);
+        if (ptr.inside) { ndc.set(ptr.x / stage.clientWidth * 2 - 1, -(ptr.y / stage.clientHeight) * 2 + 1); ray.setFromCamera(ndc, camera); ray.ray.intersectPlane(plane, hit) || hit.set(9999, 9999, 0); } else hit.set(9999, 9999, 0);
+        camera.position.x = Math.sin(t * 0.15) * 1.5; camera.lookAt(0, 3.4, 0);
+        for (var i = 0; i < N; i++) {
+          var k = i * 3;
+          var hx = home[k] + 0.18 * Math.sin(1.6 * t + i * 0.013), hy = home[k + 1] + 0.1 * Math.sin(2.1 * t + i * 0.007), hz = home[k + 2] + 0.15 * Math.cos(1.3 * t + i * 0.011);
+          var dx = pos[k] - hit.x, dy = pos[k + 1] - hit.y, dz = pos[k + 2] - hit.z, d = Math.sqrt(dx * dx + dy * dy + dz * dz);
+          if (d < 2.6 && d > 0.0001) { var f = (2.6 - d) / 2.6 * 0.16 / d; vel[k] += dx * f; vel[k + 1] += dy * f; vel[k + 2] += dz * f; }
+          var ux = hx - pos[k], uy = hy - pos[k + 1], uz = hz - pos[k + 2], L = Math.sqrt(ux * ux + uy * uy + uz * uz);
+          if (L > 0.05) { var s = Math.min(0.035 * L, 0.18) / L; vel[k] += ux * s; vel[k + 1] += uy * s; vel[k + 2] += uz * s; }
+          vel[k] *= 0.92; vel[k + 1] *= 0.92; vel[k + 2] *= 0.92;
+          pos[k] += vel[k]; pos[k + 1] += vel[k + 1]; pos[k + 2] += vel[k + 2];
+          m.makeTranslation(pos[k], pos[k + 1], pos[k + 2]);
+          (isFail[i] ? failMesh : passMesh).setMatrixAt(slot[i], m);
+        }
+        passMesh.instanceMatrix.needsUpdate = true; failMesh.instanceMatrix.needsUpdate = true;
+        renderer.render(scene, camera);
+      }
+    });
+  })();
+
+  /* ---------- Liquid chrome ---------- */
+  (function () {
+    var stage = document.getElementById("blob-stage");
+    if (typeof THREE === "undefined") return;
+    var renderer = webgl(stage); if (!renderer) return;
+    var scene = new THREE.Scene(); scene.environment = studioEnv(renderer);
+    var camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100); camera.position.set(0, 0, 9);
+    var geo = new THREE.SphereGeometry(1.45, 160, 120);
+    var base = geo.attributes.position.array.slice(), P = geo.attributes.position.array;
+    var mesh = new THREE.Mesh(geo, new THREE.MeshStandardMaterial({ color: 0xeeeeec, metalness: 1, roughness: 0.04 }));
+    scene.add(mesh);
+    function fit() { var w = stage.clientWidth, h = stage.clientHeight; renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix(); }
+    new ResizeObserver(fit).observe(stage); fit();
+    var ptr = pointer(stage), amp = 0.1, spinX = 0, spinY = 0.004, lastX = 0, lastY = 0, dragging = false;
+    stage.addEventListener("pointerdown", function (e) { dragging = true; lastX = e.clientX; lastY = e.clientY; });
+    window.addEventListener("pointerup", function () { dragging = false; });
+    window.addEventListener("pointermove", function (e) { if (!dragging) return; spinY = (e.clientX - lastX) * 0.006; spinX = (e.clientY - lastY) * 0.006; lastX = e.clientX; lastY = e.clientY; });
+    register(stage, {
+      frame: function (t) {
+        amp += ((ptr.inside ? 0.3 : 0.1) - amp) * 0.04;
+        for (var i = 0; i < P.length; i += 3) {
+          var x = base[i], y = base[i + 1], z = base[i + 2];
+          var d = amp * Math.sin(1.9 * x + t * 0.9) * Math.sin(2.1 * y + t * 1.1) * Math.sin(1.7 * z + t * 0.7)
+                + amp * 0.35 * Math.sin(4.3 * x - 3.1 * y + t * 1.7) + amp * 0.2 * Math.sin(5.2 * z + 2.7 * x - t * 2.3);
+          var s = 1 + d; P[i] = x * s; P[i + 1] = y * s; P[i + 2] = z * s;
+        }
+        geo.attributes.position.needsUpdate = true; geo.computeVertexNormals();
+        mesh.rotation.y += spinY; mesh.rotation.x += spinX;
+        if (!dragging) { spinY += (0.004 - spinY) * 0.03; spinX *= 0.95; }
+        mesh.position.y = 0.06 * Math.sin(t * 0.8);
+        renderer.render(scene, camera);
+      }
+    });
+  })();
+
+  /* ---------- Hanging captions ---------- */
+  (function () {
+    var stage = document.getElementById("rope-stage");
+    var cv = canvas2d(stage), ctx = cv.ctx, ptr = pointer(stage);
+    var labels = ["Your institution runs on judgment", "Every model is a black box", "A verdict your board can read"];
+    var ropes = [], SEG = 16, LEN = 12, held = null;
+    function build() {
+      ropes = labels.map(function (txt, n) {
+        var ax = cv.w * (cv.w < 600 ? [0.2, 0.5, 0.8][n] : [0.22, 0.5, 0.78][n]), len = LEN * (cv.w < 600 ? 0.8 : 1) * [1.1, 1.5, 0.95][n];
+        var pts = []; for (var i = 0; i <= SEG; i++) pts.push({ x: ax, y: i * len, px: ax - (n - 1) * 2, py: i * len });
+        return { txt: txt, ax: ax, len: len, pts: pts };
+      });
+    }
+    cv.onfit = build; build();
+    document.getElementById("rope-gust").addEventListener("click", function () { ropes.forEach(function (r, n) { r.pts.forEach(function (p, i) { p.px -= (6 + n * 2) * i / SEG; }); }); });
+    stage.addEventListener("pointerdown", function () {
+      ropes.forEach(function (r) { var e = r.pts[SEG]; if (Math.abs(ptr.x - e.x) < 120 && ptr.y > e.y - 8 && ptr.y < e.y + 40) held = r; });
+    });
+    window.addEventListener("pointerup", function () { held = null; });
+    function tagWidth(txt) { ctx.font = "500 10px " + getComputedStyle(document.body).fontFamily; return ctx.measureText(txt.toUpperCase()).width + 18 + txt.length * 0.6; }
+    register(stage, {
+      frame: function () {
+        ctx.clearRect(0, 0, cv.w, cv.h);
+        ropes.forEach(function (r) {
+          var pts = r.pts;
+          for (var i = 1; i <= SEG; i++) {
+            var p = pts[i], vx = (p.x - p.px) * 0.985, vy = (p.y - p.py) * 0.985;
+            p.px = p.x; p.py = p.y; p.x += vx; p.y += vy + 0.45;
+            if (ptr.inside && held !== r) { var dx = p.x - ptr.x, dy = p.y - ptr.y, d2 = dx * dx + dy * dy; if (d2 < 900) { p.x += ptr.vx * 0.08; p.y += ptr.vy * 0.04; } }
+          }
+          if (held === r) { pts[SEG].x = ptr.x; pts[SEG].y = ptr.y - 10; }
+          pts[0].x = r.ax; pts[0].y = 0;
+          for (var it = 0; it < 14; it++) {
+            for (i = 0; i < SEG; i++) {
+              var a = pts[i], b = pts[i + 1], ddx = b.x - a.x, ddy = b.y - a.y, dist = Math.sqrt(ddx * ddx + ddy * ddy) || 0.001, diff = (dist - r.len) / dist;
+              if (i === 0) { b.x -= ddx * diff; b.y -= ddy * diff; }
+              else { a.x += ddx * diff * 0.5; a.y += ddy * diff * 0.5; b.x -= ddx * diff * 0.5; b.y -= ddy * diff * 0.5; }
+            }
+            if (held === r) { pts[SEG].x = ptr.x; pts[SEG].y = ptr.y - 10; }
+          }
+          ctx.strokeStyle = T.fg; ctx.lineWidth = 1.2; ctx.setLineDash([3, 4]);
+          ctx.beginPath(); ctx.moveTo(pts[0].x, pts[0].y); for (i = 1; i <= SEG; i++) ctx.lineTo(pts[i].x, pts[i].y); ctx.stroke(); ctx.setLineDash([]);
+          var e = pts[SEG], prev = pts[SEG - 1], ang = Math.atan2(e.y - prev.y, e.x - prev.x) - Math.PI / 2, w = tagWidth(r.txt);
+          ctx.save(); ctx.translate(e.x, e.y); ctx.rotate(ang);
+          ctx.beginPath(); ctx.arc(0, 0, 3, 0, Math.PI * 2); ctx.fillStyle = T.bg; ctx.fill(); ctx.stroke();
+          ctx.fillStyle = T["tag-bg"]; ctx.fillRect(-w / 2, 6, w, 22);
+          ctx.fillStyle = T["tag-fg"]; ctx.font = "500 10px " + getComputedStyle(document.body).fontFamily; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+          if (ctx.letterSpacing !== undefined) ctx.letterSpacing = "0.6px";
+          ctx.fillText(r.txt.toUpperCase(), 0, 17.5); ctx.restore();
+        });
+      }
+    });
+  })();
+
+  /* ---------- Terminal field ---------- */
+  (function () {
+    var stage = document.getElementById("ascii-stage");
+    var cv = canvas2d(stage), ctx = cv.ctx, ptr = pointer(stage);
+    var RAMP = " .·:-=+*#%@", CW = 9, CH = 16, cols = 0, rows = 0, mask = null, ripples = [];
+    function build() {
+      ctx.font = "400 13px " + getComputedStyle(document.body).fontFamily; CW = ctx.measureText("M").width || 8;
+      cols = Math.ceil(cv.w / CW); rows = Math.ceil(cv.h / CH);
+      var off = document.createElement("canvas"); off.width = cols; off.height = rows; var o = off.getContext("2d");
+      o.fillStyle = "#000"; o.fillRect(0, 0, cols, rows); o.fillStyle = "#fff"; o.textAlign = "center"; o.textBaseline = "middle";
+      var size = Math.min(rows * 0.95, cols / 2.6); o.font = "600 " + size + "px " + getComputedStyle(document.body).fontFamily;
+      o.save(); o.scale(1, CW / CH * 1.75); o.fillText("YLAB", cols / 2, rows / 2 / (CW / CH * 1.75)); o.restore();
+      var d = o.getImageData(0, 0, cols, rows).data; mask = new Float32Array(cols * rows);
+      for (var i = 0; i < cols * rows; i++) mask[i] = d[i * 4] / 255;
+    }
+    cv.onfit = build; build();
+    var lastDrop = 0;
+    register(stage, {
+      frame: function (t) {
+        if (ptr.inside && t - lastDrop > 0.12 && (Math.abs(ptr.vx) + Math.abs(ptr.vy) > 2)) { ripples.push({ x: ptr.x, y: ptr.y, t: t }); lastDrop = t; }
+        ripples = ripples.filter(function (r) { return t - r.t < 2.2; });
+        ctx.clearRect(0, 0, cv.w, cv.h);
+        ctx.font = "400 13px " + getComputedStyle(document.body).fontFamily; ctx.textBaseline = "top"; ctx.fillStyle = T.fg;
+        for (var y = 0; y < rows; y++) {
+          var line = "";
+          for (var x = 0; x < cols; x++) {
+            var px = x * CW, py = y * CH;
+            var v = 0.22 + 0.16 * Math.sin(x * 0.11 + t * 0.6) * Math.cos(y * 0.23 - t * 0.45) + 0.1 * Math.sin((x + y) * 0.05 + t * 0.3);
+            v += mask[y * cols + x] * 0.55;
+            for (var r = 0; r < ripples.length; r++) {
+              var rp = ripples[r], age = t - rp.t, dx = px - rp.x, dy = (py - rp.y) * 1.2, d = Math.sqrt(dx * dx + dy * dy), front = age * 260;
+              var band = Math.exp(-Math.pow((d - front) / 26, 2)); v += band * 0.6 * (1 - age / 2.2);
+            }
+            if (ptr.inside) { var ddx = px - ptr.x, ddy = py - ptr.y; v += 0.35 * Math.exp(-(ddx * ddx + ddy * ddy) / 2400); }
+            v = v < 0 ? 0 : v > 0.999 ? 0.999 : v;
+            line += RAMP[Math.floor(v * RAMP.length)];
+          }
+          ctx.fillText(line, 0, py);
+        }
+      }
+    });
+  })();
+
+  /* ---------- Restless headline ---------- */
+  (function () {
+    var stage = document.getElementById("magnet-stage"), el = document.getElementById("magnet-text"), ptr = pointer(stage);
+    var words = el.textContent.split(" "); el.textContent = "";
+    var L = [];
+    words.forEach(function (w, wi) {
+      var ws = document.createElement("span"); ws.className = "w"; ws.setAttribute("aria-hidden", "true");
+      w.split("").forEach(function (ch) { var s = document.createElement("span"); s.className = "l"; s.textContent = ch; ws.appendChild(s); L.push({ el: s, x: 0, y: 0, vx: 0, vy: 0, cx: 0, cy: 0 }); });
+      el.appendChild(ws); if (wi < words.length - 1) el.appendChild(document.createTextNode(" "));
+    });
+    function measure() { var r = stage.getBoundingClientRect(); L.forEach(function (l) { var b = l.el.getBoundingClientRect(); l.cx = b.left - r.left + b.width / 2 - l.x; l.cy = b.top - r.top + b.height / 2 - l.y; }); }
+    new ResizeObserver(measure).observe(stage); if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure); measure();
+    register(stage, {
+      frame: function () {
+        for (var i = 0; i < L.length; i++) {
+          var l = L[i];
+          if (ptr.inside) {
+            var dx = l.cx + l.x - ptr.x, dy = l.cy + l.y - ptr.y, d = Math.sqrt(dx * dx + dy * dy);
+            if (d < 90 && d > 0.01) { var f = (90 - d) / 90 * 2.4; l.vx += dx / d * f + ptr.vx * 0.02; l.vy += dy / d * f + ptr.vy * 0.02; }
+          }
+          l.vx += -l.x * 0.06; l.vy += -l.y * 0.06; l.vx *= 0.82; l.vy *= 0.82; l.x += l.vx; l.y += l.vy;
+          l.el.style.transform = (Math.abs(l.x) + Math.abs(l.y) < 0.05) ? "" : "translate(" + l.x.toFixed(2) + "px," + l.y.toFixed(2) + "px) rotate(" + (l.vx * 2.2).toFixed(2) + "deg)";
+        }
+        ptr.vx *= 0.5; ptr.vy *= 0.5;
+      }
+    });
+  })();
+
+  /* ---------- Institution of dots ---------- */
+  (function () {
+    var stage = document.getElementById("portico-stage");
+    var cv = canvas2d(stage), ctx = cv.ctx, ptr = pointer(stage), dots = [], fallen = false;
+    function segs() {
+      var S = [];
+      function L(a, b, c, d) { S.push([a, b, c, d]); }
+      L(-1, -0.42, 0, -0.95); L(0, -0.95, 1, -0.42); L(-1, -0.42, 1, -0.42); L(-0.96, -0.32, 0.96, -0.32);
+      [-0.8, -0.52, -0.24, 0.24, 0.52, 0.8].forEach(function (x) { L(x - 0.05, -0.3, x - 0.05, 0.5); L(x + 0.05, -0.3, x + 0.05, 0.5); L(x - 0.09, -0.3, x + 0.09, -0.3); L(x - 0.09, 0.5, x + 0.09, 0.5); });
+      L(-0.1, 0.12, 0.1, 0.12); L(-0.1, 0.12, -0.1, 0.5); L(0.1, 0.12, 0.1, 0.5);
+      L(-1.02, 0.56, 1.02, 0.56); L(-1.1, 0.66, 1.1, 0.66); L(-1.18, 0.76, 1.18, 0.76);
+      return S;
+    }
+    function build() {
+      var sc = Math.min(cv.w * 0.36, cv.h * 0.52), cx = cv.w / 2, cy = cv.h * 0.5, step = cv.w < 600 ? 5 : 6;
+      dots = [];
+      segs().forEach(function (s) {
+        var x1 = cx + s[0] * sc, y1 = cy + s[1] * sc, x2 = cx + s[2] * sc, y2 = cy + s[3] * sc, len = Math.hypot(x2 - x1, y2 - y1), n = Math.max(2, Math.round(len / step));
+        for (var i = 0; i <= n; i++) { var hx = x1 + (x2 - x1) * i / n, hy = y1 + (y2 - y1) * i / n; dots.push({ hx: hx, hy: hy, x: hx, y: hy, vx: 0, vy: 0 }); }
+      });
+    }
+    cv.onfit = build; build();
+    document.getElementById("portico-collapse").addEventListener("click", function () { fallen = true; dots.forEach(function (d) { d.vx += (Math.random() - 0.5) * 3; d.vy -= Math.random() * 2; }); });
+    document.getElementById("portico-rebuild").addEventListener("click", function () { fallen = false; });
+    register(stage, {
+      frame: function () {
+        ctx.clearRect(0, 0, cv.w, cv.h); ctx.fillStyle = T.fg;
+        var floor = cv.h - 6;
+        ctx.beginPath();
+        for (var i = 0; i < dots.length; i++) {
+          var d = dots[i];
+          if (fallen) {
+            d.vy += 0.35; d.vx *= 0.995;
+            if (d.y > floor) { d.y = floor; d.vy *= -0.38; d.vx *= 0.8; }
+            if (d.x < 2 || d.x > cv.w - 2) { d.vx *= -0.6; d.x = Math.max(2, Math.min(cv.w - 2, d.x)); }
+          } else {
+            d.vx += (d.hx - d.x) * 0.045; d.vy += (d.hy - d.y) * 0.045; d.vx *= 0.86; d.vy *= 0.86;
+          }
+          if (ptr.inside) { var dx = d.x - ptr.x, dy = d.y - ptr.y, q = dx * dx + dy * dy; if (q < 3600 && q > 0.01) { var dd = Math.sqrt(q), f = (60 - dd) / 60 * 1.6; d.vx += dx / dd * f; d.vy += dy / dd * f; } }
+          d.x += d.vx; d.y += d.vy;
+          ctx.moveTo(d.x + 1.7, d.y); ctx.arc(d.x, d.y, 1.7, 0, Math.PI * 2);
+        }
+        ctx.fill();
+      }
+    });
+  })();
+
+  /* ---------- Loop ---------- */
+  var start = performance.now(), last = start, drewOnce = false;
+  function loop(now) {
+    readTokens();
+    var t = (now - start) / 1000;
+    if (motionOn || !drewOnce) {
+      demos.forEach(function (d) { if (d.visible || !drewOnce) { try { d.frame(t); } catch (e) { if (window.console) console.error(e); } } });
+      drewOnce = true;
+    }
+    last = now;
+    requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+})();
+</script>
+
+</body>
+</html>
