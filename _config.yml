@@ -26,3 +26,4 @@ exclude:
   - README.md
   - design/broadsheet/README.md
   - design/broadsheet/source/
+  - design/readme/source/
