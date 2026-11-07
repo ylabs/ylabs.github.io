@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ylab type, color and parts</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&amp;family=Libre+Franklin:wght@400;500;600&amp;family=JetBrains+Mono:wght@400&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#161514}a:hover{color:#8a2b1d}
+</style>
+</helmet>
+<div style="width: 1200px; height: 1500px; box-sizing: border-box; padding: 64px; background: #f8f7f5; color: #161514; font-family: 'Libre Franklin', Arial, sans-serif; display: flex; flex-direction: column; gap: 56px">
+
+  <div style="display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid #161514; padding-bottom: 14px">
+    <h1 style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-weight: 400; font-size: 44px; letter-spacing: -0.03em">The Broadsheet: system</h1>
+    <p style="margin: 0; font-size: 13px; color: #5f5a55">Three faces, one ground, one accent</p>
+  </div>
+
+  <section style="display: flex; flex-direction: column; gap: 22px">
+    <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Type</p>
+    <div style="display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 24px 32px; align-items: baseline">
+      <p style="margin: 0; font-size: 13px; color: #5f5a55">Display · Newsreader 400<br>tracking −4.5%, leading 0.92</p>
+      <p style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 112px; line-height: 0.92; letter-spacing: -0.045em">Does it work here?</p>
+      <p style="margin: 0; font-size: 13px; color: #5f5a55">Section · Newsreader 400<br>72 / 40 / 34 px</p>
+      <p style="margin: 0; font-family: 'Newsreader', Georgia, serif; font-size: 56px; line-height: 1; letter-spacing: -0.04em">Three rooms where AI is decided.</p>
+      <p style="margin: 0; font-size: 13px; color: #5f5a55">Columns · Newsreader 18/27<br>justified, first-line indent</p>
+      <p style="margin: 0; max-width: 560px; font-family: 'Newsreader', Georgia, serif; font-size: 18px; line-height: 1.5; text-align: justify; text-indent: 1.4em">Every vendor arrives with a benchmark. None of them were run on your patients, your caseworkers' files or your staff's actual jobs.</p>
+      <p style="margin: 0; font-size: 13px; color: #5f5a55">Interface · Libre Franklin<br>15 body, 11 caps labels</p>
+      <p style="margin: 0; font-size: 15px; line-height: 1.55">Hospitals, governments and employers. <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-left: 16px">Questions and answers</span></p>
+      <p style="margin: 0; font-size: 13px; color: #5f5a55">Data · JetBrains Mono 12</p>
+      <p style="margin: 0; font-family: 'JetBrains Mono', monospace; font-size: 12px">01 · 02 · 03 · Sample · [ID]</p>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 22px">
+    <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Color</p>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #f8f7f5; border: 1px solid #d9d5cf"></div><span style="font-size: 13px">Ground</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#F8F7F5</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #fffefc; border: 1px solid #d9d5cf"></div><span style="font-size: 13px">Paper</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#FFFEFC</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #d9d5cf"></div><span style="font-size: 13px">Rule</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#D9D5CF</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #5f5a55"></div><span style="font-size: 13px">Muted text</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#5F5A55</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #161514"></div><span style="font-size: 13px">Ink</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#161514</span></div>
+      <div style="display: flex; flex-direction: column; gap: 8px"><div style="height: 88px; background: #8a2b1d"></div><span style="font-size: 13px">Oxblood (rare)</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">#8A2B1D</span></div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 22px">
+    <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Parts</p>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; align-items: start">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 13px; color: #5f5a55">Stamped button</span>
+        <div><a href="#" style="display: inline-block; padding: 14px 22px; border: 1px solid #161514; box-shadow: 3px 3px 0 #161514; background: #fffefc; text-decoration: none; font-size: 14px; font-weight: 600; letter-spacing: 0.04em">Scope an evaluation</a></div>
+        <span style="font-size: 13px; color: #5f5a55; margin-top: 12px">Underlined text link</span>
+        <div><a href="#" style="font-size: 14px; font-weight: 500; text-decoration: none; border-bottom: 1px solid #161514">Start a conversation</a> <span style="margin-left: 16px; font-size: 14px; font-weight: 500">Explore →</span></div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 13px; color: #5f5a55">Coupon (intake forms)</span>
+        <div style="position: relative">
+          <svg aria-hidden="true" width="34" height="22" viewBox="0 0 34 22" fill="none" stroke="#161514" stroke-width="1.6" style="position: absolute; top: -12px; left: 18px; background: #f8f7f5; padding: 0 4px"><circle cx="6" cy="5" r="4"></circle><circle cx="6" cy="17" r="4"></circle><path d="M9.5 7 L32 17"></path><path d="M9.5 15 L32 5"></path></svg>
+          <div style="border: 1.5px dashed #161514; padding: 24px 20px; font-family: 'Newsreader', Georgia, serif; font-size: 22px">Start a conversation</div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <span style="font-size: 13px; color: #5f5a55">Eval sheet (the evals signature)</span>
+        <div style="border: 1px solid #161514; background: #fffefc; padding: 16px 18px; font-size: 13px; display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; justify-content: space-between; border-bottom: 1px dashed #161514; padding-bottom: 8px"><span style="font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Eval sheet</span><span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #5f5a55">[ID]</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #5f5a55">Task</span><span>[Task]</span></div>
+          <div style="display: flex; justify-content: space-between"><span style="color: #5f5a55">Verdict</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 16px">[Result]</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="display: flex; flex-direction: column; gap: 14px">
+    <p style="margin: 0; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase">Rules</p>
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid #161514">
+      <p style="margin: 0; padding: 18px 20px 0 0; font-size: 14px; line-height: 1.55">Hairlines, not cards. Sections are divided by 1px rules; nothing floats in a rounded box.</p>
+      <p style="margin: 0; padding: 18px 20px 0; border-left: 1px solid #d9d5cf; font-size: 14px; line-height: 1.55">Headlines say one blunt thing, centered and huge. Body copy reads like a newspaper column.</p>
+      <p style="margin: 0; padding: 18px 0 0 20px; border-left: 1px solid #d9d5cf; font-size: 14px; line-height: 1.55">Show real artifacts (eval sheets, maps, reports) instead of stock photography.</p>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1200,"height":1500}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

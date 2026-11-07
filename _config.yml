@@ -24,3 +24,5 @@ exclude:
   - .next/
   - out/
   - README.md
+  - design/broadsheet/README.md
+  - design/broadsheet/source/
